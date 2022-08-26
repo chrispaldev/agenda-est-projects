@@ -1,0 +1,72 @@
+<div class="card">
+    <form [formGroup]="agendaForm" (ngSubmit)="submitAgenda()">
+    <div class="card-header">Meeting Information</div>
+    <div class="card-body">
+        <div class="row">
+            <div class="col-12" style="width: 800px;">
+
+               
+
+                    <div class="row">
+                        <div class="col-6">
+                            <label class="control-label small">Agenda Item</label>
+                            <input
+                              type="text"
+                              required
+                              class="form-control form-control-sm"
+                              formControlName="agendaItem1"
+                            />
+                        </div>
+                        <div class="col-6">
+                            <label class="control-label small">Agenda Type</label>
+                            <ng-select
+                                [items]="agendaType"
+                                bindLabel="agendaDescription"
+                                bindValue="agendaTypeId"
+                                formControlName="agendaTypeId"
+                                (change)="changeAgendaType($event)"
+                            >
+                            </ng-select>
+                        </div>
+                    </div>
+
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            <label class="control-label small">Approver Role</label>
+                            
+                            <ng-select
+                                [items]="filteredApproverRoles"
+                                bindLabel="roleDescription"
+                                bindValue="roleId"
+                                formControlName="roleId"
+                                (change)="changeRole($event)"
+                            >
+                            </ng-select>
+                        </div>
+                        <div class="col-6">
+                            <label class="control-label small">Approver</label>
+                            <ng-select
+                                [items]="filteredApprovers"
+                                bindLabel="approverName"
+                                bindValue="approverId"
+                                formControlName="approverId"
+                            >
+                            </ng-select>
+                        </div>
+                    </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="card-footer">
+
+        <div class="row mt-2">
+            <div class="col-6">
+                <button type="submit"
+                class="btn btn-outline-success btn-sm w-50"
+                [disabled]="!agendaForm.valid">Save</button>
+            </div>
+        </div>
+    </div>
+</form>
+</div>
